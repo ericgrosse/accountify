@@ -30,7 +30,7 @@ class ExpenseList extends Component {
         <div>
           {
             props.items.map((item, index) => (
-              <div key={index} className="columns">
+              <div key={index} className="columns expense-item">
                 <div className="column has-text-centered">
                   <p>{ moment(item.date).date() }</p>
                 </div>

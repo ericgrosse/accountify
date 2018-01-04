@@ -2,5 +2,19 @@
   @import '~styles/variables';
   .header {
     background: $cyan;
+
+    p {
+      color: white;
+    }
+  }
+
+  .expense-item {
+    &:nth-child(2n) {
+      background: $grey-lighter;
+    }
+
+    &:nth-child(2n+1) {
+      background: $white-ter;
+    }
   }
 }
