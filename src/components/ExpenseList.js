@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { arrayOf, shape, string, number } from 'prop-types'
+import { arrayOf, shape, string, number, instanceOf } from 'prop-types'
 import moment from 'moment'
 import './ExpenseList.scss'
 
@@ -57,7 +57,7 @@ class ExpenseList extends Component {
 
 ExpenseList.propTypes = {
   items: arrayOf(shape({
-    date: string.isRequired,
+    date: instanceOf(Date).isRequired,
     name: string.isRequired,
     price: number.isRequired,
     tag: string.isRequired,
