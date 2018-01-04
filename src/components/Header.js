@@ -5,7 +5,7 @@ import './Header.css'
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar" role="navigation" aria-label="main navigation">
+      <nav className="navbar is-info" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <a className="navbar-item is-size-4">Accountify</a>
         </div>

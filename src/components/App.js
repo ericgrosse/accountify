@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from 'components/Header'
+import Footer from 'components/Footer'
 import './App.css'
 
 class App extends Component {
@@ -7,7 +8,18 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <h1>Content</h1>
+        
+        <section className="hero">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title has-text-centered">
+                Monthly Expenses
+              </h1>
+            </div>
+          </div>
+      </section>
+
+        <Footer />
       </div>
     )
   }
