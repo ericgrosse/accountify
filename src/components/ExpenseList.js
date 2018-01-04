@@ -26,18 +26,47 @@ class ExpenseList extends Component {
 
     return (
       <div className="ExpenseList">
-        
-        {
-          props.items.map((item, index) => (
-            <div key={index} className="expense-item">
-              <p>{ moment().date(item.date) }</p>
-              <p>{ item.name }</p>
-              <p>{ item.price }</p>
-              <p>{ item.tag }</p>
-              <p>{ item.notes }</p>
-            </div>
-          ))
-        }
+        <div className="columns">
+          <div className="column has-text-centered">
+            <p>{ 'Date' }</p>
+          </div>
+          <div className="column has-text-centered">
+            <p>{ 'Name' }</p>
+          </div>
+          <div className="column has-text-centered">
+            <p>{ 'Price' }</p>
+          </div>
+          <div className="column has-text-centered">
+            <p>{ 'Tag' }</p>
+          </div>
+          <div className="column has-text-centered">
+            <p>{ 'Notes' }</p>
+          </div>
+        </div>
+
+        <div>
+          {
+            props.items.map((item, index) => (
+              <div key={index} className="columns">
+                <div className="column has-text-centered">
+                  <p>{ moment().date(item.date) }</p>
+                </div>
+                <div className="column has-text-centered">
+                  <p>{ item.name }</p>
+                </div>
+                <div className="column has-text-centered">
+                  <p>{ item.price }</p>
+                </div>
+                <div className="column has-text-centered">
+                  <p>{ item.tag }</p>
+                </div>
+                <div className="column has-text-centered">
+                  <p>{ item.notes }</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
       </div>
     )
   }
