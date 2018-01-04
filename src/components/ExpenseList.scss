@@ -1,3 +1,6 @@
 .ExpenseList {
-
+  @import '~styles/variables';
+  .header {
+    background: $cyan;
+  }
 }

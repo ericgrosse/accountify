@@ -26,7 +26,7 @@ class ExpenseList extends Component {
 
     return (
       <div className="ExpenseList">
-        <div className="columns">
+        <div className="columns header">
           <div className="column has-text-centered">
             <p>{ 'Date' }</p>
           </div>
