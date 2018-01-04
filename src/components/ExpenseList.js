@@ -3,23 +3,6 @@ import { arrayOf, shape, string, number } from 'prop-types'
 import moment from 'moment'
 import './ExpenseList.scss'
 
-const tempData = [
-  {
-    date: 1515101473992,
-    name: 'Costco',
-    price: 35.55,
-    tag: 'groceries',
-    notes: '',
-  },
-  {
-    date: 1515101473992,
-    name: 'Uber',
-    price: 20.00,
-    tag: 'transportation',
-    notes: '',
-  },
-];
-
 class ExpenseList extends Component {
   render() {
     const { props } = this
@@ -49,7 +32,7 @@ class ExpenseList extends Component {
             props.items.map((item, index) => (
               <div key={index} className="columns">
                 <div className="column has-text-centered">
-                  <p>{ moment().date(item.date) }</p>
+                  <p>{ moment(item.date).date() }</p>
                 </div>
                 <div className="column has-text-centered">
                   <p>{ item.name }</p>
