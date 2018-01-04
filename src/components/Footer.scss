@@ -1,0 +1,16 @@
+.Footer {
+  a {
+    color: white;
+    transition: color 0.3s;
+
+    &:hover {
+      color: #4a4a4a;
+    }
+  }
+
+  .fa {
+    font-size: 60px;
+    padding: 0 6px;
+    padding-top: 16px;
+  }
+}
