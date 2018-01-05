@@ -55,9 +55,9 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Container>
-          <Header />
+        <Header />
 
+        <Container>
           <div className="tabs is-centered">
             <ul>
               <li className="is-active"><a>Expenses</a></li>
@@ -83,49 +83,51 @@ class App extends Component {
             {
               state.showFilters &&
 
-              <div>
-                <HorizontalField label="Name">
-                  <HorizontalInput
-                    placeholder=""
-                    value={ state.name }
-                    onChange={this.handleChangeName}
-                  />
-                </HorizontalField>
+              <Columns>
+                <Column className="is-half ">
+                  <HorizontalField label="Name">
+                    <HorizontalInput
+                      placeholder=""
+                      value={ state.name }
+                      onChange={this.handleChangeName}
+                    />
+                  </HorizontalField>
 
-                <HorizontalField label="Date Range">
-                  <HorizontalInput
-                    placeholder="From"
-                    value={ state.dateRangeStart }
-                    onChange={this.handleChangeDateStart}
-                  />
-                  <HorizontalInput
-                    placeholder="To"
-                    value={ state.dateRangeEnd }
-                    onChange={this.handleChangeDateEnd}
-                  />
-                </HorizontalField>
+                  <HorizontalField label="Date Range">
+                    <HorizontalInput
+                      placeholder="From"
+                      value={ state.dateRangeStart }
+                      onChange={this.handleChangeDateStart}
+                    />
+                    <HorizontalInput
+                      placeholder="To"
+                      value={ state.dateRangeEnd }
+                      onChange={this.handleChangeDateEnd}
+                    />
+                  </HorizontalField>
 
-                <HorizontalField label="Price Range">
-                  <HorizontalInput
-                    placeholder="From"
-                    value={ state.priceRangeStart }
-                    onChange={this.handleChangePriceStart}
-                  />
-                  <HorizontalInput
-                    placeholder="To"
-                    value={ state.priceRangeEnd }
-                    onChange={this.handleChangePriceEnd}
-                  />
-                </HorizontalField>
+                  <HorizontalField label="Price Range">
+                    <HorizontalInput
+                      placeholder="From"
+                      value={ state.priceRangeStart }
+                      onChange={this.handleChangePriceStart}
+                    />
+                    <HorizontalInput
+                      placeholder="To"
+                      value={ state.priceRangeEnd }
+                      onChange={this.handleChangePriceEnd}
+                    />
+                  </HorizontalField>
 
-                <HorizontalField label="Tags">
-                  <HorizontalInput
-                    placeholder=""
-                    value={ state.tags }
-                    onChange={(evt) => this.handleChangeTags(evt)}
-                  />
-                </HorizontalField>
-              </div>
+                  <HorizontalField label="Tags">
+                    <HorizontalInput
+                      placeholder=""
+                      value={ state.tags }
+                      onChange={(evt) => this.handleChangeTags(evt)}
+                    />
+                  </HorizontalField>
+                </Column>
+              </Columns>
             }
             
             <Columns>
