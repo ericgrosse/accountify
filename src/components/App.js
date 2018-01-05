@@ -4,14 +4,46 @@ import Footer from 'components/Footer'
 import ExpenseList from 'components/ExpenseList'
 import expenseListItems from 'data/expenseListItems'
 import './App.scss'
+import HorizontalField from 'components/common/HorizontalField';
+import HorizontalInput from 'components/common/HorizontalInput';
 
 class App extends Component {
   state = {
     showFilters: true,
+    name: '',
+    dateRangeStart: '',
+    dateRangeEnd: '',
+    priceRangeStart: '',
+    priceRangeEnd: '',
+    tags: '',
   }
 
   toggleFilter = () => {
     this.setState({showFilters: !this.state.showFilters})
+  }
+
+  handleChangeName = (evt) => {
+    this.setState({name: evt.target.value})
+  }
+
+  handleChangeDateStart = (evt) => {
+    this.setState({dateRangeStart: evt.target.value})
+  }
+
+  handleChangeDateEnd = (evt) => {
+    this.setState({dateRangeEnd: evt.target.value})
+  }
+
+  handleChangePriceStart = (evt) => {
+    this.setState({priceRangeStart: evt.target.value})
+  }
+
+  handleChangePriceEnd = (evt) => {
+    this.setState({priceRangeEnd: evt.target.value})
+  }
+
+  handleChangeTags = (evt) => {
+      this.setState({tags: evt.target.value})
   }
 
   render() {
@@ -39,22 +71,48 @@ class App extends Component {
                 {
                   state.showFilters &&
 
-                  <div className="field is-horizontal">
-                    <div className="field-label is-normal">
-                      <label className="label">Price range</label>
-                    </div>
-                    <div className="field-body">
-                      <div className="field">
-                        <p className="control is-expanded">
-                          <input className="input" type="text" placeholder="From" />
-                        </p>
-                      </div>
-                      <div className="field">
-                        <p className="control is-expanded">
-                          <input className="input" type="email" placeholder="To" />
-                        </p>
-                      </div>
-                    </div>
+                  <div>
+                    <HorizontalField label="Name">
+                      <HorizontalInput
+                        placeholder=""
+                        value={ state.name }
+                        onChange={this.handleChangeName}
+                      />
+                    </HorizontalField>
+
+                    <HorizontalField label="Date Range">
+                      <HorizontalInput
+                        placeholder="From"
+                        value={ state.dateRangeStart }
+                        onChange={this.handleChangeDateStart}
+                      />
+                      <HorizontalInput
+                        placeholder="To"
+                        value={ state.dateRangeEnd }
+                        onChange={this.handleChangeDateEnd}
+                      />
+                    </HorizontalField>
+
+                    <HorizontalField label="Price Range">
+                      <HorizontalInput
+                        placeholder="From"
+                        value={ state.priceRangeStart }
+                        onChange={this.handleChangePriceStart}
+                      />
+                      <HorizontalInput
+                        placeholder="To"
+                        value={ state.priceRangeEnd }
+                        onChange={this.handleChangePriceEnd}
+                      />
+                    </HorizontalField>
+
+                    <HorizontalField label="Tags">
+                      <HorizontalInput
+                        placeholder=""
+                        value={ state.tags }
+                        onChange={(evt) => this.handleChangeTags(evt)}
+                      />
+                    </HorizontalField>
                   </div>
                 }
               </div>
