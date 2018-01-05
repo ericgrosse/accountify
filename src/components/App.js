@@ -6,10 +6,12 @@ import expenseListItems from 'data/expenseListItems'
 import './App.scss'
 import HorizontalField from 'components/common/HorizontalField';
 import HorizontalInput from 'components/common/HorizontalInput';
+import Columns from 'components/common/Columns';
+import Column from 'components/common/Column';
 
 class App extends Component {
   state = {
-    showFilters: true,
+    showFilters: false,
     name: '',
     dateRangeStart: '',
     dateRangeEnd: '',
@@ -61,12 +63,14 @@ class App extends Component {
               </h1>
 
               <div className="content">
+                <div clasName="columns">
                 <button
                   className="button is-info"
                   onClick={this.toggleFilter}
                 >
                   {state.showFilters  ? 'Hide Filters' : 'Show Filters' }
                 </button>
+                </div>
 
                 {
                   state.showFilters &&
@@ -115,6 +119,12 @@ class App extends Component {
                     </HorizontalField>
                   </div>
                 }
+                
+                <Columns>
+                  <Column>
+                    <p className="has-text-right">Month (Dropdown)</p>
+                  </Column>
+                </Columns>
               </div>
 
               <ExpenseList
