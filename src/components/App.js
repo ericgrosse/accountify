@@ -8,6 +8,8 @@ import HorizontalField from 'components/common/HorizontalField';
 import HorizontalInput from 'components/common/HorizontalInput';
 import Columns from 'components/common/Columns';
 import Column from 'components/common/Column';
+import Content from 'components/common/Content';
+import Container from 'components/common/Container';
 
 class App extends Component {
   state = {
@@ -57,20 +59,20 @@ class App extends Component {
         
         <section className="hero">
           <div className="hero-body">
-            <div className="container">
+            <Container>
               <h1 className="title has-text-centered">
                 Monthly Expenses
               </h1>
 
-              <div className="content">
-                <div clasName="columns">
-                <button
-                  className="button is-info"
-                  onClick={this.toggleFilter}
-                >
-                  {state.showFilters  ? 'Hide Filters' : 'Show Filters' }
-                </button>
-                </div>
+              <Content>
+                <Columns>
+                  <button
+                    className="button is-info"
+                    onClick={this.toggleFilter}
+                  >
+                    {state.showFilters  ? 'Hide Filters' : 'Show Filters' }
+                  </button>
+                </Columns>
 
                 {
                   state.showFilters &&
@@ -125,12 +127,12 @@ class App extends Component {
                     <p className="has-text-right">Month (Dropdown)</p>
                   </Column>
                 </Columns>
-              </div>
+              </Content>
 
               <ExpenseList
                 items={expenseListItems}
               />
-            </div>
+            </Container>
           </div>
       </section>
 
