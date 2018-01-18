@@ -38,7 +38,7 @@ class ExpenseList extends Component {
                   <p>{ item.name }</p>
                 </div>
                 <div className="column has-text-centered">
-                  <p>{ item.price }</p>
+                  <p>{ Number(item.price).toFixed(2) }</p>
                 </div>
                 <div className="column has-text-centered">
                   <p>{ item.tag }</p>

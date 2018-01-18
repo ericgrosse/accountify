@@ -36,7 +36,7 @@ class App extends Component {
       let csvEntries = res.data.map(entry => ({
         date: entry[2],
         name: entry[4],
-        price: entry[6],
+        price: -entry[6],
         tag: '',
         notes: '',
       }))
