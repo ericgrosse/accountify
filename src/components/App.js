@@ -11,6 +11,7 @@ import Column from 'components/common/Column'
 import Content from 'components/common/Content'
 import Container from 'components/common/Container'
 import axios from 'axios'
+import Dropzone from 'react-dropzone'
 
 class App extends Component {
   state = {
@@ -98,9 +99,14 @@ class App extends Component {
           
           <h1 className="title has-text-centered">Monthly Expenses</h1>
 
-          <p className="field">
-            <button className="button is-info" onClick={this.handleImportCSV}>Import CSV</button>
-          </p>
+          <p className="field">Import CSV</p>
+
+          <div className="dropzone">
+              <Dropzone onDrop={this.handleImportCSV}>
+                <p>Try dropping some files here, or click to select files to upload.</p>
+              </Dropzone>
+            </div>
+
           <p className="field">
             <button className="button is-info" onClick={this.handleAddNew}>Add New</button>
           </p>
