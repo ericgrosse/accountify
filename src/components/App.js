@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import ExpenseList from 'components/ExpenseList'
-import expenseListItems from 'data/expenseListItems'
+import items from 'data/expenseListItems'
 import './App.scss'
 import HorizontalField from 'components/common/HorizontalField'
 import HorizontalInput from 'components/common/HorizontalInput'
@@ -23,8 +23,8 @@ class App extends Component {
     priceRangeStart: '',
     priceRangeEnd: '',
     tags: '',
-    expenseListItems,
-    filteredExpenseListItems: expenseListItems,
+    items,
+    filtereditems: items,
   }
 
   handleImportCSV = () => {
@@ -44,12 +44,12 @@ class App extends Component {
       //console.log(res.data)
       //console.log(csvEntries)
 
-      let expenseListItems = state.expenseListItems.concat(csvEntries)
-      expenseListItems.sort((a,b) => moment(a.date).date() - moment(b.date).date())
+      let items = state.items.concat(csvEntries)
+      items.sort((a,b) => moment(a.date).date() - moment(b.date).date())
       this.setState({
-        expenseListItems,
+        items,
         // Reset filtered items to original items, and clear all search filters
-        filteredExpenseListItems: expenseListItems,
+        filtereditems: items,
         name: '',
         dateRangeStart: '',
         dateRangeEnd: '',
@@ -73,11 +73,11 @@ class App extends Component {
 
   handleChangeName = (evt) => {
     const { value } = evt.target
-    let filteredExpenseListItems = this.state.expenseListItems.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
+    let filtereditems = this.state.items.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
 
     this.setState({
       name: evt.target.value,
-      filteredExpenseListItems,
+      filtereditems,
     })
   }
 
@@ -195,7 +195,7 @@ class App extends Component {
           </Columns>
 
           <ExpenseList
-            items={state.filteredExpenseListItems}
+            items={state.filtereditems}
           />
         </Container>
 
