@@ -22,7 +22,7 @@ class App extends Component {
     dateRangeEnd: '',
     priceRangeStart: '',
     priceRangeEnd: '',
-    tags: '',
+    tag: '',
     items,
     filteredItems: items,
   }
@@ -55,7 +55,7 @@ class App extends Component {
         dateRangeEnd: '',
         priceRangeStart: '',
         priceRangeEnd: '',
-        tags: '',
+        tag: '',
       })
     })
     .catch(err => {
@@ -78,12 +78,11 @@ class App extends Component {
       let nameFilter = item.name.toLowerCase().includes(state.name.toLowerCase())
       let dateStartFilter = !state.dateRangeStart || moment(item.date).date() >= state.dateRangeStart
       let dateEndFilter = !state.dateRangeEnd || moment(item.date).date() <= state.dateRangeEnd
+      let priceStartFilter = !state.priceRangeStart || item.price >= state.priceRangeStart
+      let priceEndFilter = !state.priceRangeEnd || item.price <= state.priceRangeEnd
+      let tagFilter = item.tag.toLowerCase().includes(state.tag.toLowerCase())
 
-      /*console.log(`\nnameFilter: ${nameFilter}`)
-      console.log(`dateStartFilter: ${dateStartFilter}`)
-      console.log(`dateEndFilter: ${dateEndFilter}\n`)*/
-
-      return nameFilter && dateStartFilter && dateEndFilter
+      return nameFilter && dateStartFilter && dateEndFilter && priceStartFilter && priceEndFilter && tagFilter
     })
 
     this.setState({filteredItems})
@@ -102,15 +101,15 @@ class App extends Component {
   }
 
   handleChangePriceStart = (evt) => {
-    this.setState({priceRangeStart: evt.target.value})
+    this.setState({priceRangeStart: evt.target.value}, this.filter)
   }
 
   handleChangePriceEnd = (evt) => {
-    this.setState({priceRangeEnd: evt.target.value})
+    this.setState({priceRangeEnd: evt.target.value}, this.filter)
   }
 
-  handleChangeTags = (evt) => {
-    this.setState({tags: evt.target.value})
+  handleChangeTag = (evt) => {
+    this.setState({tag: evt.target.value}, this.filter)
   }
 
   handleClearFields = () => {
@@ -121,7 +120,7 @@ class App extends Component {
       dateRangeEnd: '',
       priceRangeStart: '',
       priceRangeEnd: '',
-      tags: '',
+      tag: '',
     })
   }
 
@@ -204,8 +203,8 @@ class App extends Component {
                 <HorizontalField label="Tags">
                   <HorizontalInput
                     placeholder=""
-                    value={ state.tags }
-                    onChange={(evt) => this.handleChangeTags(evt)}
+                    value={ state.tag }
+                    onChange={(evt) => this.handleChangeTag(evt)}
                   />
                 </HorizontalField>
                 
