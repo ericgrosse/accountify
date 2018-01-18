@@ -14,10 +14,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.get('/api/parseCSV', (req, res) => {
-  let csvPath = path.join(__dirname, 'csv97594.csv')
+app.get('/api/parseCSV/:filename', (req, res) => {
+  let csvPath = path.join(__dirname, req.params.filename)
   let buffer = fs.readFileSync(csvPath)
-  let records = parse(buffer.toString(), { columns: true })
+  let records = parse(buffer.toString())
   //console.log(records)
   res.send(records);
 });

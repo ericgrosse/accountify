@@ -1,7 +1,7 @@
 function createItems() {
   let items = []
 
-  for (let i = 0; i < 30; ++i) {
+  for (let i = 0; i < 5; ++i) {
     items.push({
       date: new Date(),
       name: `Item ${i}`,

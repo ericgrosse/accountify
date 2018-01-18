@@ -21,12 +21,27 @@ class App extends Component {
     priceRangeStart: '',
     priceRangeEnd: '',
     tags: '',
+    expenseListItems,
   }
 
   handleImportCSV = () => {
-    axios.get('http://localhost:5000/api/parseCSV')
+    const { state } = this
+    let csvFilename = 'csv1989.csv'
+
+    axios.get(`http://localhost:5000/api/parseCSV/${csvFilename}`)
     .then(res => {
-      console.log(res.data)
+      let csvEntries = res.data.map(entry => ({
+        date: entry[2],
+        name: entry[4],
+        price: entry[6],
+        tag: '',
+        notes: '',
+      }))
+
+      //console.log(res.data)
+      //console.log(csvEntries)
+      this.setState({expenseListItems: state.expenseListItems.concat(csvEntries)})
+
     })
     .catch(err => {
       console.error(err)
@@ -150,7 +165,7 @@ class App extends Component {
           </Columns>
 
           <ExpenseList
-            items={expenseListItems}
+            items={state.expenseListItems}
           />
         </Container>
 
