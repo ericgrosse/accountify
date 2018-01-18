@@ -11,6 +11,7 @@ import Column from 'components/common/Column'
 import Content from 'components/common/Content'
 import Container from 'components/common/Container'
 import axios from 'axios'
+import moment from 'moment'
 //import Dropzone from 'react-dropzone'
 
 class App extends Component {
@@ -41,8 +42,10 @@ class App extends Component {
 
       //console.log(res.data)
       //console.log(csvEntries)
-      this.setState({expenseListItems: state.expenseListItems.concat(csvEntries)})
 
+      let expenseListItems = state.expenseListItems.concat(csvEntries)
+      expenseListItems.sort((a,b) => moment(a.date).date() - moment(b.date).date())
+      this.setState({expenseListItems})
     })
     .catch(err => {
       console.error(err)
