@@ -101,6 +101,18 @@ class App extends Component {
     this.setState({tags: evt.target.value})
   }
 
+  handleClearFields = () => {
+    this.setState({
+      filtereditems: this.state.items,
+      name: '',
+      dateRangeStart: '',
+      dateRangeEnd: '',
+      priceRangeStart: '',
+      priceRangeEnd: '',
+      tags: '',
+    })
+  }
+
   render() {
     const { state, props } = this
 
@@ -134,7 +146,7 @@ class App extends Component {
           <p className="field">
             <button className="button is-info" onClick={this.handleAddNew}>Add New</button>
           </p>
-          <p>
+          <p className="field">
             <button className="button is-info" onClick={this.toggleFilter}>{state.showFilters  ? 'Hide Filters' : 'Show Filters' }</button>
           </p>
 
@@ -184,6 +196,10 @@ class App extends Component {
                     onChange={(evt) => this.handleChangeTags(evt)}
                   />
                 </HorizontalField>
+                
+                <p className="field">
+                  <button className="button is-info" onClick={this.handleClearFields}>Clear</button>
+                </p>
               </Column>
             </Columns>
           }
