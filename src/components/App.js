@@ -24,6 +24,7 @@ class App extends Component {
     priceRangeEnd: '',
     tags: '',
     expenseListItems,
+    filteredExpenseListItems: expenseListItems,
   }
 
   handleImportCSV = () => {
@@ -45,7 +46,17 @@ class App extends Component {
 
       let expenseListItems = state.expenseListItems.concat(csvEntries)
       expenseListItems.sort((a,b) => moment(a.date).date() - moment(b.date).date())
-      this.setState({expenseListItems})
+      this.setState({
+        expenseListItems,
+        // Reset filtered items to original items, and clear all search filters
+        filteredExpenseListItems: expenseListItems,
+        name: '',
+        dateRangeStart: '',
+        dateRangeEnd: '',
+        priceRangeStart: '',
+        priceRangeEnd: '',
+        tags: '',
+      })
     })
     .catch(err => {
       console.error(err)
@@ -61,7 +72,13 @@ class App extends Component {
   }
 
   handleChangeName = (evt) => {
-    this.setState({name: evt.target.value})
+    const { value } = evt.target
+    let filteredExpenseListItems = this.state.expenseListItems.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
+
+    this.setState({
+      name: evt.target.value,
+      filteredExpenseListItems,
+    })
   }
 
   handleChangeDateStart = (evt) => {
@@ -81,7 +98,7 @@ class App extends Component {
   }
 
   handleChangeTags = (evt) => {
-      this.setState({tags: evt.target.value})
+    this.setState({tags: evt.target.value})
   }
 
   render() {
@@ -178,7 +195,7 @@ class App extends Component {
           </Columns>
 
           <ExpenseList
-            items={state.expenseListItems}
+            items={state.filteredExpenseListItems}
           />
         </Container>
 
