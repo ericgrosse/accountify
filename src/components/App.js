@@ -10,6 +10,7 @@ import Columns from 'components/common/Columns'
 import Column from 'components/common/Column'
 import Content from 'components/common/Content'
 import Container from 'components/common/Container'
+import axios from 'axios'
 
 class App extends Component {
   state = {
@@ -20,6 +21,16 @@ class App extends Component {
     priceRangeStart: '',
     priceRangeEnd: '',
     tags: '',
+  }
+
+  handleImportCSV = () => {
+    axios.get('http://localhost:5000/api/parseCSV')
+    .then(res => {
+      console.log(res.data)
+    })
+    .catch(err => {
+      console.error(err)
+    })
   }
 
   handleAddNew = () => {
@@ -72,6 +83,9 @@ class App extends Component {
           
           <h1 className="title has-text-centered">Monthly Expenses</h1>
 
+          <p className="field">
+            <button className="button is-info" onClick={this.handleImportCSV}>Import CSV</button>
+          </p>
           <p className="field">
             <button className="button is-info" onClick={this.handleAddNew}>Add New</button>
           </p>
