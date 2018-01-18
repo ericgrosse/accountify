@@ -24,7 +24,7 @@ class App extends Component {
     priceRangeEnd: '',
     tags: '',
     items,
-    filtereditems: items,
+    filteredItems: items,
   }
 
   handleImportCSV = () => {
@@ -49,7 +49,7 @@ class App extends Component {
       this.setState({
         items,
         // Reset filtered items to original items, and clear all search filters
-        filtereditems: items,
+        filteredItems: items,
         name: '',
         dateRangeStart: '',
         dateRangeEnd: '',
@@ -71,22 +71,34 @@ class App extends Component {
     this.setState({showFilters: !this.state.showFilters})
   }
 
-  handleChangeName = (evt) => {
-    const { value } = evt.target
-    let filtereditems = this.state.items.filter(item => item.name.toLowerCase().includes(value.toLowerCase()))
+  filter = () => {
+    const { state } = this
 
-    this.setState({
-      name: evt.target.value,
-      filtereditems,
+    let filteredItems = state.items.filter(item => {
+      let nameFilter = item.name.toLowerCase().includes(state.name.toLowerCase())
+      let dateStartFilter = !state.dateRangeStart || moment(item.date).date() >= state.dateRangeStart
+      let dateEndFilter = !state.dateRangeEnd || moment(item.date).date() <= state.dateRangeEnd
+
+      /*console.log(`\nnameFilter: ${nameFilter}`)
+      console.log(`dateStartFilter: ${dateStartFilter}`)
+      console.log(`dateEndFilter: ${dateEndFilter}\n`)*/
+
+      return nameFilter && dateStartFilter && dateEndFilter
     })
+
+    this.setState({filteredItems})
+  }
+
+  handleChangeName = (evt) => {
+    this.setState({name: evt.target.value}, this.filter)
   }
 
   handleChangeDateStart = (evt) => {
-    this.setState({dateRangeStart: evt.target.value})
+    this.setState({dateRangeStart: evt.target.value}, this.filter)
   }
 
   handleChangeDateEnd = (evt) => {
-    this.setState({dateRangeEnd: evt.target.value})
+    this.setState({dateRangeEnd: evt.target.value}, this.filter)
   }
 
   handleChangePriceStart = (evt) => {
@@ -103,7 +115,7 @@ class App extends Component {
 
   handleClearFields = () => {
     this.setState({
-      filtereditems: this.state.items,
+      filteredItems: this.state.items,
       name: '',
       dateRangeStart: '',
       dateRangeEnd: '',
@@ -211,7 +223,7 @@ class App extends Component {
           </Columns>
 
           <ExpenseList
-            items={state.filtereditems}
+            items={state.filteredItems}
           />
         </Container>
 
